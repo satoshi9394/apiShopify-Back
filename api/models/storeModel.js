@@ -22,19 +22,24 @@ const StoreSchema = new Schema({
     type: String,
     required: "Por favor ingrese el numero"
   },
-  emal: {
+  email: {
     type: String,
     required: "Por favor ingrese un email"
   },
   myshopify_domain: {
+
     type: String,
     required: "Por favor ingrese el nombre del dominio"
   },
   status: {
     type: String,
     enum: ['en_espera', 'en_revision'],
-    default: 'en_revision'
-  }
+    default: 'en_espera'
+  },
+  variants:[{
+    type: Schema.Types.ObjectId,
+    ref: 'Variants'
+  }],
 
 })
 

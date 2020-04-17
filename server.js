@@ -12,10 +12,12 @@ const app = express()
 const port = process.env.PORT || 3001;
 const mongoose = require('mongoose')
 const Store = require('./api/models/storeModel');
+const Variant = require('./api/models/variantModel');
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
 const storeRoutes = require('./api/routes/storeRoutes')
+const variantRoutes = require('./api/routes/variantRoutes')
 
 mongoose.Promise = global.Promise
 
@@ -29,6 +31,7 @@ app.use(bodyParser.json())
 //routes(app)
 app.prefix('/api/v1/', function(home){
   storeRoutes(home)
+  variantRoutes(home)
 })
 
 app.listen(port);

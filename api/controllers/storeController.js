@@ -3,14 +3,6 @@ const Store = mongoose.model('Stores')
 
 exports.read_a_store = (req, res) => {
 
-/*
-  Task.find({}, (err, task)=>{
-
-    if(err) return res.send(err);
-    res.json(task)
-
-  })*/
-
   Store
     .findOne({ shopify_shop_id: req.params.id }, )
     .exec((err, record) => {
@@ -19,3 +11,17 @@ exports.read_a_store = (req, res) => {
       res.json(record)
     })
 }
+
+exports.create_a_store = (req, res) => {
+  console.log('entre a la ruta5')
+  const new_record = new Store(req.body)
+  console.log(new_record)
+  new_record.save((err, record)=> {
+    console.log(err)
+    if(err){
+      return res.status(400).send(err)
+    } 
+    res.json(record)
+  })
+}
+
