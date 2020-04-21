@@ -5,7 +5,9 @@ exports.read_a_store = (req, res) => {
 
   Store
     .findOne({ shopify_shop_id: req.params.id }, )
+    .populate('variants')
     .exec((err, record) => {
+      
       if(err) return res.status(400).send(err)
       if(record === null) return res.status(400).json({msg: 'Tienda no encontrada'})
       res.json(record)
